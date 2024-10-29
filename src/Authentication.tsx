@@ -3,9 +3,10 @@ import Client, { Environment, Local } from "./client";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { Link, useNavigate } from "react-router-dom";
 import UptimerLogo from "./assets/uptimer-logo.png";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export const AuthenticationPage = () => {
+  const [showLogo, setShowLogo] = useState(false);
   const { isAuthenticated, isSessionLoading } = useSession();
   const sessionToken = getSessionToken();
   const navigate = useNavigate();
@@ -70,11 +71,15 @@ export const AuthenticationPage = () => {
 
   return (
     <section className="flex flex-col items-center mt-10">
-      <Link to={"/"}>
-        <img src={UptimerLogo} alt="" className=" h-24" />
-      </Link>
+      {showLogo && (
+        <Link to={"/"}>
+          <img src={UptimerLogo} alt="" className=" h-24" />
+        </Link>
+      )}
+
       <Descope
         flowId="sign-up-or-in"
+        onReady={() => setShowLogo(true)}
         onSuccess={async (e) => {
           console.log("Workflow completed", e);
 

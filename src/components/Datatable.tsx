@@ -51,6 +51,7 @@ import {
 import { Collapsible, CollapsibleTrigger } from "./ui/collapsible";
 import { CollapsibleContent } from "@radix-ui/react-collapsible";
 import { AuditDataJsonViewer, AuditDataJsonViewerSheet } from "./AuditJsonView";
+import { AuditTrailDetail } from "./AuditTrailDetail";
 
 export const SortedFilterColumn = (
   fieldName: string,
@@ -410,62 +411,7 @@ export const Datatable = <TData, TValue>({
                           </TableCell>
                         ))}
                       </TableRow>
-                      <CollapsibleContent asChild className=" bg-gray-100">
-                        <TableRow>
-                          <TableCell colSpan={row.getVisibleCells().length + 1}>
-                            <div className="flex mx-auto gap-40">
-                              <div className="space-y-8">
-                                <div>
-                                  <p>Project ID</p>
-                                  <p>iiwe902p3o23</p>
-                                </div>
-                                <div>
-                                  <p>Access Method</p>
-                                  <p>iiwe902p3o23</p>
-                                </div>
-                                <div>
-                                  <p>GeoTag</p>
-                                  <p>Nigeria (NG)</p>
-                                </div>
-                              </div>
-                              <div className="space-y-8">
-                                <div>
-                                  <p>User ID</p>
-                                  <p>1122343432</p>
-                                </div>
-                                <div>
-                                  <p>Actor</p>
-                                  <p>32p23jms32932lkw</p>
-                                </div>
-                                <div>
-                                  <p>Remote IP</p>
-                                  <p>1122343432</p>
-                                </div>
-                              </div>
-                              <div className="space-y-8">
-                                <div>
-                                  <p>Device Type</p>
-                                  <p>1122343432</p>
-                                </div>
-
-                                <div>
-                                  <p>Timestamp</p>
-                                  <p>1122343432</p>
-                                </div>
-
-                                <div>
-                                  <p>Location</p>
-                                  <p>1122343432</p>
-                                </div>
-                              </div>
-                              <AuditDataJsonViewer data={row.original as any} />
-                            </div>
-                            {/* <div className="w-full">
-                              Collapsible content here...
-                            </div> */}
-                          </TableCell>
-                        </TableRow>
-                      </CollapsibleContent>
+                      <AuditTrailDetail row={row} />
                     </>
                   </Collapsible>
                 )
